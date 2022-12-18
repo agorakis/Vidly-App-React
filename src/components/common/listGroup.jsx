@@ -5,12 +5,11 @@ const ListGroup = (props) => {
     <ul className="list-group">
       {props.genres.map((item) => (
         <li
-          style={{ cursor: "pointer" }}
           key={item[props.valueProperty]}
           className={
             props.currentGenre === item
-              ? "list-group-item active"
-              : "list-group-item"
+              ? "clickable list-group-item active"
+              : "clickable list-group-item"
           }
           onClick={() => props.onGenreSelect(item)}
         >

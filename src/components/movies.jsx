@@ -52,7 +52,7 @@ class Movies extends Component {
     if (count === 0) {
       return (
         <React.Fragment>
-          <h3 className="text-center m-3">
+          <h3 className="text-center mt-4 mb-4">
             There are no movies in the database!
           </h3>
           <div className="d-flex justify-content-center">
@@ -83,7 +83,7 @@ class Movies extends Component {
 
     return (
       <React.Fragment>
-        <h3 className="text-center m-3">
+        <h3 className="text-center mt-4 mb-4">
           Showing
           <span className="badge bg-primary text-light ml-2 mr-2">
             {filteredMovies.length}

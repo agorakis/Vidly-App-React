@@ -8,11 +8,14 @@ const Input = (props) => {
         autoFocus={props.autoFocus}
         onChange={props.onChange}
         value={props.value}
-        type="text"
+        type={props.type}
         className="form-control"
         id={props.name}
         placeholder={props.label}
       />
+      {props.hint && (
+        <div className="text-danger font-italic mt-1">{props.hint}</div>
+      )}
     </div>
   );
 };

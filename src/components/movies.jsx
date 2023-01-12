@@ -6,6 +6,7 @@ import Pagination from "./common/pagination";
 import ListGroup from "./common/listGroup";
 import MoviesTable from "./moviesTable";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 
 class Movies extends Component {
   state = {
@@ -94,6 +95,10 @@ class Movies extends Component {
         <div className="container text-center">
           <div style={{ rowGap: "15px" }} className="row">
             <div className="col-4">
+              <Link to="movies/new" className="btn btn-primary m-2">
+                Add New Movie
+              </Link>
+
               <ListGroup
                 genres={this.state.genres}
                 currentGenre={this.state.selectedGenre}

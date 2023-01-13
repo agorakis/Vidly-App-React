@@ -5,6 +5,7 @@ import { paginate } from "../utilities/paginate";
 import Pagination from "./common/pagination";
 import ListGroup from "./common/listGroup";
 import MoviesTable from "./moviesTable";
+import SearchBox from "./searchBox";
 import _ from "lodash";
 import { Link } from "react-router-dom";
 
@@ -14,6 +15,8 @@ class Movies extends Component {
     genres: [],
     currentPage: 1,
     pageSize: 4,
+    searchQuery: "",
+    selectedGenre: null,
     sortColumn: { path: "title", order: "asc" },
   };
 
@@ -40,7 +43,11 @@ class Movies extends Component {
   };
 
   handleGenreSelect = (genre) => {
-    this.setState({ selectedGenre: genre, currentPage: 1 });
+    this.setState({ searchQuery: "", selectedGenre: genre, currentPage: 1 });
+  };
+
+  handleSearch = (query) => {
+    this.setState({ searchQuery: query, selectedGenre: null, currentPage: 1 });
   };
 
   handleSort = (tempSortColumn) => {
@@ -63,12 +70,19 @@ class Movies extends Component {
       );
     }
 
-    const filteredMovies =
-      this.state.selectedGenre && this.state.selectedGenre._id
-        ? this.state.movies.filter(
-            (m) => m.genre._id === this.state.selectedGenre._id
-          )
-        : this.state.movies;
+    let filteredMovies = this.state.movies;
+
+    if (this.state.searchQuery) {
+      filteredMovies = this.state.movies.filter((m) =>
+        m.title.toLowerCase().startsWith(this.state.searchQuery.toLowerCase())
+      );
+    }
+
+    if (this.state.selectedGenre && this.state.selectedGenre._id) {
+      filteredMovies = this.state.movies.filter(
+        (m) => m.genre._id === this.state.selectedGenre._id
+      );
+    }
 
     const sortedArray = _.orderBy(
       filteredMovies,
@@ -95,7 +109,7 @@ class Movies extends Component {
         <div className="container text-center">
           <div style={{ rowGap: "15px" }} className="row">
             <div className="col-4">
-              <Link to="movies/new" className="btn btn-primary m-2">
+              <Link to="movies/new" className="btn btn-primary mb-3">
                 Add New Movie
               </Link>
 
@@ -107,6 +121,10 @@ class Movies extends Component {
             </div>
 
             <div className="col">
+              <SearchBox
+                value={this.state.searchQuery}
+                onChange={this.handleSearch}
+              />
               <MoviesTable
                 movies={moviesArray}
                 sortColumn={this.state.sortColumn}

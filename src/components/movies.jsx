@@ -38,8 +38,8 @@ class Movies extends Component {
     } catch (error) {
       if (error.response && error.response.status === 404) {
         toast.error("This movie has already been deleted");
-        this.setState({ movies: originalMovies });
       }
+      this.setState({ movies: originalMovies });
     }
   };
 
@@ -122,9 +122,11 @@ class Movies extends Component {
         <div className="container text-center">
           <div style={{ rowGap: "15px" }} className="row">
             <div className="col-4">
-              <Link to="movies/new" className="btn btn-primary mb-3">
-                Add New Movie
-              </Link>
+              {this.props.user.isAdmin && (
+                <Link to="movies/new" className="btn btn-primary mb-3">
+                  Add New Movie
+                </Link>
+              )}
 
               <ListGroup
                 genres={this.state.genres}

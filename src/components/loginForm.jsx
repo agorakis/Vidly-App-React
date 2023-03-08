@@ -19,7 +19,9 @@ class LoginForm extends Form {
       const response = await loginUser(this.state.data);
       const jwt = response.data;
       localStorage.setItem("token", jwt);
-      window.location = "/";
+
+      const state = this.props.location.state;
+      window.location = state ? state.from.pathname : "/";
     } catch (error) {
       if (error.response && error.response.status === 400) {
         const errors = { ...this.state.errors };

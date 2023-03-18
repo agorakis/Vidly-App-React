@@ -21,7 +21,6 @@ function App() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    console.log(user);
     try {
       const jwt = localStorage.getItem("token");
       const currentUser = jwtDecode(jwt);

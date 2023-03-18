@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navbar = (props) => {
   return (
@@ -19,7 +19,7 @@ const Navbar = (props) => {
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <ul className="navbar-nav">
+        <ul className="navbar-nav mx-4">
           <li className="nav-item">
             <NavLink className="nav-link" to="/movies">
               Movies

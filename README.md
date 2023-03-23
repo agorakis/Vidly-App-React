@@ -1,4 +1,4 @@
-# Vidly React App
+# Vidly App React 
 
 Scope of this project was to learn React and some of the most common use cases such as 
 routing, forms, pagination, filtering, sorting, CRUD operations, authentication and authorization.
